@@ -1,0 +1,58 @@
+body {
+    margin-top: 2.5em;
+    margin-left: 25%;
+    margin-right: 25%;
+    margin-bottom: 2.5em;
+}
+
+h1 {
+    font-size: 4em;
+    text-align: center;
+    margin-bottom: 1em;
+}
+
+p {
+    font-size: larger;
+    text-align: justify;
+    text-justify: inter-word;
+}
+
+#a {
+    background-color: rgba(0, 255, 0, 0.2);
+}
+
+#a:hover {
+    background-color: rgba(0, 255, 0, 0.4);
+}
+
+#b {
+    background-color: rgba(128, 255, 0, 0.2);
+}
+
+#b:hover {
+    background-color: rgba(128, 255, 0, 0.4);
+}
+
+#c {
+    background-color: rgba(255, 255, 0, 0.2);
+}
+
+#c:hover {
+    background-color: rgba(255, 255, 0, 0.4);
+}
+
+#d {
+    background-color: rgba(255, 128, 0, 0.2);
+}
+
+#d:hover {
+    background-color: rgba(255, 128, 0, 0.4);
+}
+
+#e {
+    background-color: rgba(255, 0, 0, 0.2);
+}
+
+#e:hover {
+    background-color: rgba(255, 0, 0, 0.4);
+}
