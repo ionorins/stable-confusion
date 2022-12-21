@@ -12,47 +12,56 @@ h1 {
 }
 
 p {
-    font-size: larger;
+    font-size: large;
     text-align: justify;
     text-justify: inter-word;
+    cursor: pointer;
 }
 
-#a {
+.a {
     background-color: rgba(0, 255, 0, 0.2);
 }
 
-#a:hover {
+.a:hover {
     background-color: rgba(0, 255, 0, 0.4);
 }
 
-#b {
+.b {
     background-color: rgba(128, 255, 0, 0.2);
 }
 
-#b:hover {
+.b:hover {
     background-color: rgba(128, 255, 0, 0.4);
 }
 
-#c {
+.c {
     background-color: rgba(255, 255, 0, 0.2);
 }
 
-#c:hover {
+.c:hover {
     background-color: rgba(255, 255, 0, 0.4);
 }
 
-#d {
+.d {
     background-color: rgba(255, 128, 0, 0.2);
 }
 
-#d:hover {
+.d:hover {
     background-color: rgba(255, 128, 0, 0.4);
 }
 
-#e {
+.e {
     background-color: rgba(255, 0, 0, 0.2);
 }
 
-#e:hover {
+.e:hover {
     background-color: rgba(255, 0, 0, 0.4);
+}
+
+.s {
+    background-color: rgba(64, 64, 64, 0.2);
+}
+
+.s:hover {
+    background-color: rgba(64, 64, 64, 0.4);
 }
