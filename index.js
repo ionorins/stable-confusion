@@ -9,6 +9,9 @@ const selectedOrders = [
 
 const ps = document.querySelectorAll('p')
 
+const focus = document.getElementById('focus')
+
+
 ps.forEach((p, i) => {
     p.className = defaultOrder[i]
 })
@@ -20,6 +23,7 @@ ps.forEach(para => {
         ps.forEach((p, j) => {
             p.className = selectedOrders[i][j]
         })
+        focus.innerHTML = elem.explicitOriginalTarget.innerHTML
     }
 })
 
