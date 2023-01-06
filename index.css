@@ -1,8 +1,5 @@
 body {
-    margin-top: 2.5em;
-    margin-left: 25%;
-    margin-right: 25%;
-    margin-bottom: 2.5em;
+    margin: 2.5em 15% 2.5em 15%;
 }
 
 h1 {
@@ -16,6 +13,26 @@ p {
     text-align: justify;
     text-justify: inter-word;
     cursor: pointer;
+}
+
+.focus {
+    font-size: large;
+    text-align: justify;
+    text-justify: inter-word;
+    padding: 10px;
+    width: 32%;
+    max-height: 70vh;
+    position: fixed;
+    overflow-y: scroll;
+    border: 1px solid rgba(0,0,0,0.3)
+}
+
+.splitscreen {
+    display: flex;
+    flex-direction: row;
+    gap: 30px;
+    width: 50%;
+    float: right;
 }
 
 .a {
@@ -65,3 +82,4 @@ p {
 .s:hover {
     background-color: rgba(64, 64, 64, 0.4);
 }
+
