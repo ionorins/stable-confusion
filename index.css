@@ -33,6 +33,7 @@ p {
     gap: 30px;
     width: 50%;
     float: right;
+    padding-bottom: 50vh;
 }
 
 .a {
