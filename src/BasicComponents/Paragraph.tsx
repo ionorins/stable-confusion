@@ -5,8 +5,8 @@ import Button from "react-bootstrap/Button";
 
 type Props = {
 	content: number;
-    color: number;
-    includeFooter: boolean;
+    lastClicked: number;
+    unfixed: boolean;
     onClick: React.Dispatch<React.SetStateAction<number>>;
 	className?: string;
 };
@@ -57,11 +57,35 @@ be repudiated and annoyances accepted. The wise man therefore always holds in th
 selection: he rejects pleasures to secure other greater pleasures, or else he endures pains to avoid worse
 pains.`;
 
+// Suppose that our input is an length n array of paragraphs (paragraphContentArray) and an n by n array of scores between 0 and 1
+// s.t. for i in [0..n), scores(i)(j) is the contradictoriness score of paras(j) against paras(i).
+
+// Example data
 let paragraphContentArray = [paragraph1, paragraph2, paragraph3, paragraph4, paragraph5];
+let scores = 
+    [ [0.756, 0.344, 0.621, 0.298, 0.563],
+        [0.853, 0.831, 0.117, 0.380, 0.081],
+        [0.445, 0.004, 0.162, 0.173, 0.797],
+        [0.397, 0.499, 0.955, 0.571, 0.848],
+        [0.275, 0.367, 0.804, 0.815, 0.933],
+    ];
+
 let colorLetters = ["a", "b", "c", "d", "e"];
 
+// returns integer between 0 and 4
+function getColour(i: number, j: number): number {
+
+    const thresholds = [0.2, 0.4, 0.6, 0.8];
+    const score = scores[i][j];
+
+    var i = 0;
+    while(score > thresholds[i]) i++;
+    return i;
+    
+}
+    
 const Textbox = observer((props: Props) => {
-    let colorClass = colorLetters[props.color];
+    let colorClass = props.unfixed ? colorLetters[getColour(props.lastClicked, props.content)] : colorLetters[-1]
 
 	return (
 		<React.Fragment>
@@ -71,10 +95,10 @@ const Textbox = observer((props: Props) => {
                         <Card.Text>
                             {paragraphContentArray[props.content]}
                         </Card.Text>
-                        {props.includeFooter &&
+                        {props.unfixed &&
                             <React.Fragment>
                                 <hr />
-                                <Card.Text>Contradiction score:</Card.Text>
+                                <Card.Text>Contradiction score: {scores[props.lastClicked][props.content]}</Card.Text>
                                 <Button 
                                     variant="outline-dark" 
                                     size="sm" 
