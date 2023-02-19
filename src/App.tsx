@@ -9,7 +9,7 @@ function App() {
 
   let basicArray = [0, 1, 2, 3, 4];
 
-  const [fixedParagraph, setFixedParagraph] = useState(4);
+  const [fixedParagraph, setFixedParagraph] = useState(0);
 
   let paragraphArray = basicArray.map((item, index) => {
     return <Paragraph 
@@ -31,7 +31,7 @@ function App() {
   return (
     <div className="App">
       <header className="App-header">
-          Contradiction catcher
+          ContraVerse
       </header>
       <body>
         <Container>

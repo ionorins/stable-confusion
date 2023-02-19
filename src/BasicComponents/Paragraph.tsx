@@ -4,11 +4,11 @@ import Card from "react-bootstrap/Card";
 import Button from "react-bootstrap/Button";
 
 type Props = {
-	content: number;
+    content: number;
     lastClicked: number;
     unfixed: boolean;
     onClick: React.Dispatch<React.SetStateAction<number>>;
-	className?: string;
+    className?: string;
 };
 
 // Text for paragraphs - could extract these pretty easily from a file
@@ -62,55 +62,71 @@ pains.`;
 
 // Example data
 let paragraphContentArray = [paragraph1, paragraph2, paragraph3, paragraph4, paragraph5];
-let scores = 
-    [ [0.756, 0.344, 0.621, 0.298, 0.563],
-        [0.853, 0.831, 0.117, 0.380, 0.081],
-        [0.445, 0.004, 0.162, 0.173, 0.797],
-        [0.397, 0.499, 0.955, 0.571, 0.848],
-        [0.275, 0.367, 0.804, 0.815, 0.933],
+let scores =
+    [[0.134, 0.323, 0.591, 0.773, 0.935],
+    [0.853, 0.831, 0.117, 0.380, 0.081],
+    [0.445, 0.004, 0.162, 0.173, 0.797],
+    [0.397, 0.499, 0.955, 0.571, 0.848],
+    [0.275, 0.367, 0.804, 0.815, 0.933],
     ];
 
 let colorLetters = ["a", "b", "c", "d", "e"];
+let thresholds = [0.2, 0.4, 0.6, 0.8];
 
 // returns integer between 0 and 4
 function getColour(i: number, j: number): number {
 
-    const thresholds = [0.2, 0.4, 0.6, 0.8];
     const score = scores[i][j];
 
-    var i = 0;
-    while(score > thresholds[i]) i++;
-    return i;
-    
+    var k = 0;
+    while (score > thresholds[k]) k++;
+    return k;
+
 }
-    
+
+function interpretScore(score: number): string {
+    let interpretations = ["Very Low", "Low", "Medium", "High", "Very High"]
+    var k = 0;
+    while (score > thresholds[k]) k++;
+    return interpretations[k];
+}
+
+export function overallScore(): string {
+    return interpretScore(scores.flat().reduce((a, b) => Math.max(a, b), -1))
+}
+
 const Textbox = observer((props: Props) => {
     let colorClass = props.unfixed ? colorLetters[getColour(props.lastClicked, props.content)] : colorLetters[-1]
 
-	return (
-		<React.Fragment>
-			<form className={props.className}>
+    return (
+        <React.Fragment>
+            <form className={props.className}>
                 <Card>
                     <Card.Body className={colorClass}>
+                        {!props.unfixed &&
+                            <Card.Title>
+                                Reference Clause
+                            </Card.Title>
+                        }
                         <Card.Text>
                             {paragraphContentArray[props.content]}
                         </Card.Text>
                         {props.unfixed &&
                             <React.Fragment>
                                 <hr />
-                                <Card.Text>Contradiction score: {scores[props.lastClicked][props.content]}</Card.Text>
-                                <Button 
-                                    variant="outline-dark" 
-                                    size="sm" 
-                                    className="float-right danger" 
+                                <Card.Text>Contradiction Risk: {interpretScore(scores[props.lastClicked][props.content])}</Card.Text>
+                                <Button
+                                    variant="outline-dark"
+                                    size="sm"
+                                    className="float-right danger"
                                     onClick={() => props.onClick(props.content)}>Examine</Button>
                             </React.Fragment>
                         }
                     </Card.Body>
                 </Card>
-			</form>
-		</React.Fragment>
-	);
+            </form>
+        </React.Fragment>
+    );
 });
 
 export default Textbox;
