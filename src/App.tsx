@@ -7,35 +7,31 @@ import Col from 'react-bootstrap/Col';
 
 function App() {
 
-  // Contradictoriness of each paragraph - 0 is most contradictory, 4 is least contradictory
-  // -1 is plain color (used for focus paragraph on the left)
-  // Could also extract this from a file or something
-  let paragraphContradictionArray = [1, 3, 4, 2, 0];
   let basicArray = [0, 1, 2, 3, 4];
+
+  const [fixedParagraph, setFixedParagraph] = useState(0);
 
   let paragraphArray = basicArray.map((item, index) => {
     return <Paragraph 
               content={item} 
-              color={paragraphContradictionArray[index]} 
+              lastClicked={fixedParagraph}
               onClick={() => setFixedParagraph(item)} 
-              includeFooter={true}
+              unfixed={true}
               className="card-padding" 
             />
   })
 
-  const [fixedParagraph, setFixedParagraph] = useState(4);
-
   let myComponent = <Paragraph 
                       content={fixedParagraph} 
-                      color={-1} 
+                      lastClicked={fixedParagraph} 
                       onClick={() => setFixedParagraph(1)}
-                      includeFooter={false}
+                      unfixed={false}
                       className="card-fixed"/>
 
   return (
     <div className="App">
       <header className="App-header">
-          Contradiction catcher
+          ContraVerse
       </header>
       <body>
         <Container>
