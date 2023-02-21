@@ -31,18 +31,26 @@ function App() {
   return (
     <div className="App">
       <header className="App-header">
-          ContraVerse
+          <strong>ContraVerse</strong>
       </header>
       <body>
+        <div className="fixed-header">
+          <hr/>
+          <p>Currently examining <strong>My_Contract</strong>. Document has a <strong>High</strong> contradiction risk.</p>
+          <hr/>
+          <Row>
+            <Col>Reference Clause</Col>
+            <Col>Contract</Col>
+          </Row>
+        </div>
         <Container>
-            <Row>
-              <Col>{myComponent}</Col>
-              <Col>{paragraphArray}</Col>
-            </Row>
-          </Container>
+          <Row>
+            <Col>{myComponent}</Col>
+            <Col>{paragraphArray}</Col>
+          </Row>
+        </Container>
       </body>
       <footer className="App-footer">
-        Law & CS - Group 2
       </footer>
     </div>
   );

@@ -2,6 +2,8 @@ import { observer } from "mobx-react";
 import React from "react";
 import Card from "react-bootstrap/Card";
 import Button from "react-bootstrap/Button";
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
 
 type Props = {
     content: number;
@@ -98,35 +100,41 @@ export function overallScore(): string {
 const Textbox = observer((props: Props) => {
     let colorClass = props.unfixed ? colorLetters[getColour(props.lastClicked, props.content)] : colorLetters[-1]
 
-    return (
-        <React.Fragment>
+    if (props.unfixed) {
+        return (
             <form className={props.className}>
-                <Card>
-                    <Card.Body className={colorClass}>
-                        {!props.unfixed &&
-                            <Card.Title>
-                                Reference Clause
-                            </Card.Title>
-                        }
-                        <Card.Text>
-                            {paragraphContentArray[props.content]}
-                        </Card.Text>
-                        {props.unfixed &&
-                            <React.Fragment>
-                                <hr />
-                                <Card.Text>Contradiction Risk: {interpretScore(scores[props.lastClicked][props.content])}</Card.Text>
-                                <Button
-                                    variant="outline-dark"
-                                    size="sm"
-                                    className="float-right danger"
-                                    onClick={() => props.onClick(props.content)}>Examine</Button>
-                            </React.Fragment>
-                        }
-                    </Card.Body>
-                </Card>
+                <Row>
+                    <Col sm={9} className={colorClass}>
+                        {paragraphContentArray[props.content]} 
+                    </Col>
+                    <Col sm={3}>
+                    <React.Fragment>
+                        <p><strong>Contradiction Risk:</strong> {interpretScore(scores[props.lastClicked][props.content])}</p>
+                        <Button
+                            variant="outline-dark"
+                            size="sm"
+                            className="float-right danger"
+                            onClick={() => props.onClick(props.content)}>Examine</Button>
+                    </React.Fragment>
+                    </Col>
+                </Row>
             </form>
-        </React.Fragment>
-    );
+        );
+    } else {
+        return (
+            <React.Fragment>
+                <form className={props.className}>
+                    <Card>
+                        <Card.Body className={colorClass}>
+                            <Card.Text>
+                                {paragraphContentArray[props.content]}
+                            </Card.Text>
+                        </Card.Body>
+                    </Card>
+                </form>
+            </React.Fragment>
+        );
+    }
 });
 
 export default Textbox;
