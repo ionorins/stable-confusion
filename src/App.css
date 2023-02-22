@@ -3,7 +3,7 @@
 }
 
 .App-header {
-  min-height: 20vh;
+  min-height: 10vh;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -17,6 +17,8 @@
   background-color: #378BA4;
   font-size: 40px;
 }
+
+
 
 .App-footer {
   min-height: 45px;
@@ -103,11 +105,15 @@
   top: 0;
   background-color: #378BA4;
   color: white;
-  padding: 20px;
+  padding: 10px;
   z-index: 1;
   align-content: center;
-  font-size: 25px;
+  font-size: 20px;
   width: 100%;
   padding-left: 50px;
   margin-left: 0px;
+}
+
+hr {
+  margin: 0px;
 }
